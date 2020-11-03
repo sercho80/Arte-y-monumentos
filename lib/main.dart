@@ -19,8 +19,11 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       title: 'Arte y Monumentos',
-      home: ListaZonasScreen(),
-      /*home: (tipo != null)
+      // Para pruebas
+      home: ListaLocalidades(),
+      /*
+      completar
+      home: (tipo != null)
           ? ListaPuntosFiltradaScreen()
           : (localidad != null)
               ? ListaTiposScreen()
