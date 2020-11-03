@@ -31,7 +31,7 @@ class ListaLocalidades extends StatelessWidget {
 
   Widget _lista() {
     return FutureBuilder(
-      future: dataProvider.cargarLocalidades(box.read('zona')) ?? args['zona'],
+      future: dataProvider.cargarLocalidades(box.read('zona') ?? args['zona']),
       initialData: [],
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
@@ -54,6 +54,7 @@ class ListaLocalidades extends StatelessWidget {
         onTap: () {
           box.write('localidad', element);
           args['localidad'] = element;
+          Get.offAll(ListaTipos(), arguments: args);
         },
       );
       lst.add(w);
