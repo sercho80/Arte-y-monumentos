@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:arte_y_monumentos/models/puntos_monumentos_model.dart';
 import 'package:arte_y_monumentos/models/monumentos_model.dart';
 
-class Puntosrovider {
+class PuntosProvider {
   List<Monumento> listaMonumentos = [];
   List<String> listaZonas = [];
   List<String> listaLocalidad = [];
@@ -12,7 +12,8 @@ class Puntosrovider {
   List<Monumento> listaMonumentosFiltrada = [];
 
   Future<List<Monumento>> cargarPuntos() async {
-    final data = await rootBundle.loadString('assets/data/arte_y_monumentos.json');
+    final data =
+        await rootBundle.loadString('assets/data/arte_y_monumentos.json');
     final decodedData = json.decode(data);
     final openData = decodedData['OpenData'];
     final openDataRow = openData['OpenDataRow'];
@@ -79,4 +80,4 @@ class Puntosrovider {
   }
 }
 
-final dataProvider = new Puntosrovider();
+final dataProvider = new PuntosProvider();
