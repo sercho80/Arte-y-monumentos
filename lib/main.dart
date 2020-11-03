@@ -10,11 +10,23 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
+    String zona = box.read('zona');
+    String localidad = box.read('localidad');
+    String tipo = box.read('tipo');
+
     return GetMaterialApp(
-      title: 'Material App',
-      home: ListZonasScreen(),
+      title: 'Arte y Monumentos',
+      home: ListaZonasScreen(),
+      /*home: (tipo != null)
+          ? ListaPuntosFiltradaScreen()
+          : (localidad != null)
+              ? ListaTiposScreen()
+              : (zona != null)
+                  ? ListLocalidadesScreen()
+                  : ListMancomunidadesScreen(),*/
       debugShowCheckedModeBanner: false,
     );
   }
