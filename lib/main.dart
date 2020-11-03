@@ -1,4 +1,4 @@
-import 'package:arte_y_monumentos/screens/listazonas_screen.dart';
+import 'package:arte_y_monumentos/screens/listalocalidades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

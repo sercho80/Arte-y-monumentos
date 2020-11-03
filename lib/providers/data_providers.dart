@@ -65,7 +65,7 @@ class Monumento {
     return listaTipo;
   }
 
-  Future<List<Monumento>> cargarPuntosTipo(String loc, String tipo) async {
+  Future<List<Monumento>> cargarMonumentosTipo(String loc, String tipo) async {
     if (listaMonumentos.length == 0) {
       await cargarPuntos();
     }
