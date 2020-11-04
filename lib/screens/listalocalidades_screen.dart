@@ -54,7 +54,7 @@ class ListaLocalidades extends StatelessWidget {
         onTap: () {
           box.write('localidad', element);
           args['localidad'] = element;
-          Get.offAll(ListaTipos(), arguments: args);
+          Get.offAll(ListaTiposScreen(), arguments: args);
         },
       );
       lst.add(w);

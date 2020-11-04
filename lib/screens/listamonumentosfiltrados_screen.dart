@@ -18,7 +18,7 @@ class ListaMonumentosFiltrados extends StatelessWidget {
       body: _lista(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.offAll(ListaTipos(), arguments: args);
+          Get.offAll(ListaTiposScreen(), arguments: args);
         },
         child: Icon(Icons.arrow_back),
       ),

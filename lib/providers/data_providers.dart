@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:arte_y_monumentos/models/puntos_monumentos_model.dart';
 import 'package:arte_y_monumentos/models/monumentos_model.dart';
 
-class Monumento {
+class PuntosProvider {
   List<Monumento> listaMonumentos = [];
   List<String> listaZonas = [];
   List<String> listaLocalidad = [];
@@ -79,7 +79,4 @@ class Monumento {
   }
 }
 
-final dataProvider = new Monumento();
-
-//TODO
-//Comprobar fallos
+final dataProvider = new PuntosProvider();
