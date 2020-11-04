@@ -12,7 +12,7 @@ class Puntosrovider {
   List<Monumento> listaMonumentosFiltrada = [];
 
   Future<List<Monumento>> cargarPuntos() async {
-    final data = await rootBundle.loadString('data/arte_y_monumentos.json');
+    final data = await rootBundle.loadString('assets/data/arte_y_monumentos.json');
     final decodedData = json.decode(data);
     final openData = decodedData['OpenData'];
     final openDataRow = openData['OpenDataRow'];

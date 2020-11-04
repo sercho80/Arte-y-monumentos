@@ -1,5 +1,4 @@
 import 'package:arte_y_monumentos/providers/data_providers.dart';
-import 'package:arte_y_monumentos/screens/listazonas_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -20,7 +19,7 @@ class ListaTiposScreen extends StatelessWidget {
       body: _lista(context),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.offAll(ListaZonasScreen(), arguments: args);
+          //Get.offAll(ListaLocalidades(), arguments: args);
         },
         child: Icon(Icons.arrow_back),
       ),
@@ -30,8 +29,8 @@ class ListaTiposScreen extends StatelessWidget {
   Widget _lista(BuildContext context) {
     return FutureBuilder(
       future:
-          dataProvider.cargarLocalidades(box.read('localidad') ?? args['localidad']),
-      initialData: [],
+          dataProvider.cargarTipos(box.read('NombreLocalidad') ?? args['NombreLocalidad']),
+          initialData: [],
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return ListView(
@@ -51,8 +50,8 @@ class ListaTiposScreen extends StatelessWidget {
         title: Text(element),
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
-          box.write('tipo', element);
-          args['tipo'] = element;
+          box.write('Tipo', element);
+          args['Tipo'] = element;
           //Get.offAll(ListaMonumentosFiltrados(), arguments: args);
         },
       );
