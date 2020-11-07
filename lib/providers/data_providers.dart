@@ -1,8 +1,8 @@
+import 'package:arte_y_monumentos/models/monumento_model.dart';
+import 'package:arte_y_monumentos/models/puntos_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:arte_y_monumentos/models/puntos_monumentos_model.dart';
-import 'package:arte_y_monumentos/models/monumentos_model.dart';
 
 class PuntosProvider {
   List<Monumento> listaMonumentos = [];
@@ -12,7 +12,8 @@ class PuntosProvider {
   List<Monumento> listaMonumentosFiltrada = [];
 
   Future<List<Monumento>> cargarPuntos() async {
-    final data = await rootBundle.loadString('data/arte_y_monumentos.json');
+    final data =
+        await rootBundle.loadString('assets/data/arte_y_monumentos.json');
     final decodedData = json.decode(data);
     final openData = decodedData['OpenData'];
     final openDataRow = openData['OpenDataRow'];

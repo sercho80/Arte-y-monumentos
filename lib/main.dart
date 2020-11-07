@@ -1,7 +1,8 @@
-import 'package:arte_y_monumentos/screens/listalocalidades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
+import 'screens/listazonas_screen.dart';
 
 void main() async {
   await GetStorage.init();
@@ -13,17 +14,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String zona = box.read('zona');
-    String localidad = box.read('localidad');
-    String tipo = box.read('tipo');
+    String zona = box.read('DescripZona');
+    String localidad = box.read('NombreLocalidad');
+    String tipo = box.read('Tipo');
 
     return GetMaterialApp(
       title: 'Arte y Monumentos',
-      // Para pruebas
-      home: ListaLocalidades(),
-      /*
-      completar
-      home: (tipo != null)
+      home: ListZonasScreen(),
+      /*home: (tipo != null)
           ? ListaPuntosFiltradaScreen()
           : (localidad != null)
               ? ListaTiposScreen()
