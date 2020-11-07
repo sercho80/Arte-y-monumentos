@@ -1,90 +1,83 @@
+import 'package:arte_y_monumentos/models/monumento_model.dart';
+import 'package:arte_y_monumentos/models/puntos_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-class Monumento {
-  String tipo;
+class PuntosProvider {
+  List<Monumento> listaMonumentos = [];
+  List<String> listaZonas = [];
+  List<String> listaLocalidad = [];
+  List<String> listaTipo = [];
+  List<Monumento> listaMonumentosFiltrada = [];
 
-  List<String> tipos = [
-    'Punto limpio fijo',
-    'Aceite de cocina usado',
-    'Compostaje comunitario',
-    'Pilas',
-    'Ropa y calzado',
-  ];
-
-  List<Monumento> listaPuntos = [];
-  List<String> listaMancomunidades = [];
-  List<String> listalocalidades = [];
-  List<String> tipoLocalidad = [];
-  List<Monumento> tipoPunto = [];
-/*
-  Future<List<PuntoReciclaje>> cargarPuntos() async {
-    final data = await rootBundle.loadString('data/ReciclajesGlobal.json');
+  Future<List<Monumento>> cargarPuntos() async {
+    final data =
+        await rootBundle.loadString('assets/data/arte_y_monumentos.json');
     final decodedData = json.decode(data);
     final openData = decodedData['OpenData'];
     final openDataRow = openData['OpenDataRow'];
-    Puntos puntos = Puntos.fromJsonList(openDataRow);
-    listaPuntos = puntos.lista;
-    return listaPuntos;
+    Monumentos monumentos = Monumentos.fromJsonList(openDataRow);
+    listaMonumentos = monumentos.lista;
+    return listaMonumentos;
   }
 
-  Future<List<String>> cargarMancomunidades() async {
-    if (listaPuntos.length == 0) {
+  Future<List<String>> cargarZonas() async {
+    if (listaMonumentos.length == 0) {
       await cargarPuntos();
     }
-    listaMancomunidades = [];
-    listaPuntos.forEach((pnt) {
-      if (listaMancomunidades.indexOf(pnt.mancomunidad) < 0) {
-        listaMancomunidades.add(pnt.mancomunidad);
+    listaZonas = [];
+    listaMonumentos.forEach((element) {
+      if (listaZonas.indexOf(element.descripZona) < 0) {
+        listaZonas.add(element.descripZona);
       } else {
         return Center(child: CircularProgressIndicator());
       }
     });
-    return listaMancomunidades;
+    return listaZonas;
   }
 
   Future<List<String>> cargarLocalidades(String str) async {
-    if (listaPuntos.length == 0) {
+    if (listaMonumentos.length == 0) {
       await cargarPuntos();
     }
-    listalocalidades = [];
-    listaPuntos.forEach((element) {
-      if (element.mancomunidad == str) {
-        if (listalocalidades.indexOf(element.localidad) < 0) {
-          listalocalidades.add(element.localidad);
+    listaLocalidad = [];
+    listaMonumentos.forEach((element) {
+      if (element.descripZona == str) {
+        if (listaLocalidad.indexOf(element.nombreLocalidad) < 0) {
+          listaLocalidad.add(element.nombreLocalidad);
         }
       }
     });
-    return listalocalidades;
+    return listaLocalidad;
   }
 
   Future<List<String>> cargarTipos(String str) async {
-    if (listaPuntos.length == 0) {
+    if (listaMonumentos.length == 0) {
       await cargarPuntos();
     }
-    tipoLocalidad = [];
-    listaPuntos.forEach((element) {
-      if ((element.localidad == str) &&
-          (tipoLocalidad.indexOf(element.tipoEquipamiento) < 0)) {
-        tipoLocalidad.add(element.tipoEquipamiento);
+    listaTipo = [];
+    listaMonumentos.forEach((element) {
+      if ((element.nombreLocalidad == str) &&
+          (listaTipo.indexOf(element.tipo) < 0)) {
+        listaTipo.add(element.tipo);
       }
     });
-    return tipoLocalidad;
+    return listaTipo;
   }
 
-  Future<List<PuntoReciclaje>> cargarPuntosTipo(String loc, String tipo) async {
-    if (listaPuntos.length == 0) {
+  Future<List<Monumento>> cargarMonumentosTipo(String loc, String tipo) async {
+    if (listaMonumentos.length == 0) {
       await cargarPuntos();
     }
-    tipoPunto = [];
-    listaPuntos.forEach((element) {
-      if ((element.localidad == loc) && (element.tipoEquipamiento == tipo)) {
-        tipoPunto.add(element);
+    listaMonumentosFiltrada = [];
+    listaMonumentos.forEach((element) {
+      if ((element.nombreLocalidad == loc) && (element.tipo == tipo)) {
+        listaMonumentosFiltrada.add(element);
       }
     });
-    return tipoPunto;
-  }*/
+    return listaMonumentosFiltrada;
+  }
 }
 
-final dataProvider = new Monumento();
+final dataProvider = new PuntosProvider();

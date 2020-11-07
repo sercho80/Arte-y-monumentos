@@ -1,19 +1,17 @@
+import 'package:arte_y_monumentos/providers/data_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class ListaZonasScreen extends StatelessWidget {
+class ListZonasScreen extends StatelessWidget {
   Map<String, Object> args = new Map<String, Object>();
   final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
-    box.write('mancomunidad', null);
-    box.write('localidad', null);
-    box.write('tipo', null);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista mancomunidades'),
+        title: Text('Lista zonas'),
       ),
       //drawer: MenuWidget(),
       body: _lista(),
@@ -22,8 +20,7 @@ class ListaZonasScreen extends StatelessWidget {
 
   Widget _lista() {
     return FutureBuilder(
-        //future: puntosProvider.cargarPuntos(),
-        // future: dataProvider.cargarMancomunidades(),
+        future: dataProvider.cargarZonas(),
         initialData: [],
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
@@ -31,7 +28,19 @@ class ListaZonasScreen extends StatelessWidget {
               children: _listaElementos(context, snapshot.data),
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+              child: ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(20.0),
+                children: [
+                  Center(
+                      child: Image(
+                          image:
+                              Image.asset('assets/images/escudo.png').image)),
+                  Center(child: CircularProgressIndicator()),
+                ],
+              ),
+            );
           }
         });
   }
@@ -43,9 +52,8 @@ class ListaZonasScreen extends StatelessWidget {
         title: Text(element),
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
-          box.write('mancomunidad', element);
-          args['mancomunidad'] = element;
-
+          box.write('DescripZona', element);
+          args['DescripZona'] = element;
           //Get.offAll(ListLocalidadesScreen(), arguments: args);
         },
       );
