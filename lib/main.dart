@@ -1,3 +1,4 @@
+import 'package:arte_y_monumentos/screens/listatipos_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       title: 'Arte y Monumentos',
-      home: ListZonasScreen(),
+      home: ListaTiposScreen(),
       /*home: (tipo != null)
           ? ListaPuntosFiltradaScreen()
           : (localidad != null)
