@@ -1,6 +1,6 @@
-import 'dart:js';
-
 import 'package:arte_y_monumentos/providers/data_providers.dart';
+import 'package:arte_y_monumentos/screens/listatipos_screen.dart';
+import 'package:arte_y_monumentos/screens/listazonas_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -11,18 +11,16 @@ class ListaLocalidades extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    box.write('localidad', null);
-    box.write('tipo', null);
-
-    args = Get.arguments();
-
+    box.write('NombreLocalidad', null);
+    box.write('Tipo', null);
+    args = Get.arguments ?? new Map<String, Object>();
     return Scaffold(
       appBar: AppBar(title: Text("Arte y Monumentos por localidad")),
       //drawer: MenuWidget(),
       body: _lista(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.offAll(ListaZonasScreen(), arguments: args);
+          Get.offAll(ListZonasScreen(), arguments: args);
         },
         child: Icon(Icons.arrow_back),
       ),
@@ -31,7 +29,8 @@ class ListaLocalidades extends StatelessWidget {
 
   Widget _lista() {
     return FutureBuilder(
-      future: dataProvider.cargarLocalidades(box.read('zona') ?? args['zona']),
+      future: dataProvider
+          .cargarLocalidades(box.read('DescripZona') ?? args['DescripZona']),
       initialData: [],
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
@@ -52,8 +51,8 @@ class ListaLocalidades extends StatelessWidget {
         title: Text(element),
         trailing: Icon(Icons.arrow_back),
         onTap: () {
-          box.write('localidad', element);
-          args['localidad'] = element;
+          box.write('NombreLocalidad', element);
+          args['NombreLocalidad'] = element;
           Get.offAll(ListaTiposScreen(), arguments: args);
         },
       );

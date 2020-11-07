@@ -1,4 +1,5 @@
 import 'package:arte_y_monumentos/providers/data_providers.dart';
+import 'package:arte_y_monumentos/screens/listalocalidades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -9,9 +10,13 @@ class ListZonasScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    box.write('DescripZona', null);
+    box.write('NombreLocalidad', null);
+    box.write('Tipo', null);
+    args = Get.arguments ?? new Map<String, Object>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista zonas'),
+        title: Text('Arte y Monumentos por zonas'),
       ),
       //drawer: MenuWidget(),
       body: _lista(),
@@ -54,7 +59,7 @@ class ListZonasScreen extends StatelessWidget {
         onTap: () {
           box.write('DescripZona', element);
           args['DescripZona'] = element;
-          //Get.offAll(ListLocalidadesScreen(), arguments: args);
+          Get.offAll(ListaLocalidades(), arguments: args);
         },
       );
       lst.add(w);

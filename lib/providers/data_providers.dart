@@ -1,8 +1,8 @@
+import 'package:arte_y_monumentos/models/monumento_model.dart';
+import 'package:arte_y_monumentos/models/puntos_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:arte_y_monumentos/models/puntos_monumentos_model.dart';
-import 'package:arte_y_monumentos/models/monumentos_model.dart';
 
 class PuntosProvider {
   List<Monumento> listaMonumentos = [];

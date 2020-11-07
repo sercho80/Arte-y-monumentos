@@ -1,5 +1,5 @@
 import 'package:arte_y_monumentos/providers/data_providers.dart';
-import 'package:arte_y_monumentos/screens/mapa_screen.dart';
+import 'package:arte_y_monumentos/screens/listatipos_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -28,8 +28,8 @@ class ListaMonumentosFiltrados extends StatelessWidget {
   Widget _lista() {
     return FutureBuilder(
       future: dataProvider.cargarMonumentosTipo(
-          box.read('localidad') ?? args['localidad'],
-          box.read('tipo') ?? args['tipo']),
+          box.read('NombreLocalidad') ?? args['NombreLocalidad'],
+          box.read('Tipo') ?? args['Tipo']),
       initialData: [],
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
@@ -50,7 +50,7 @@ class ListaMonumentosFiltrados extends StatelessWidget {
         title: Text(element),
         trailing: Icon(Icons.arrow_back),
         onTap: () {
-          Get.offAll(MapaMonumento(), arguments: args);
+          //Get.offAll(MapaMonumento(), arguments: args);
         },
       );
       lst.add(w);
