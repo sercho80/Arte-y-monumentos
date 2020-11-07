@@ -1,5 +1,7 @@
 import 'package:arte_y_monumentos/providers/data_providers.dart';
 import 'package:arte_y_monumentos/screens/listatipos_screen.dart';
+import 'package:arte_y_monumentos/screens/mapa_screen.dart';
+import 'package:arte_y_monumentos/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,11 +12,11 @@ class ListaMonumentosFiltrados extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    args = Get.arguments();
+    args = Get.arguments() ?? new Map<String, Object>();
 
     return Scaffold(
       appBar: AppBar(title: Text("Lista de arte y monumentos")),
-      //drawer: MenuWidget(),
+      drawer: MenuWidget(),
       body: _lista(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -50,7 +52,7 @@ class ListaMonumentosFiltrados extends StatelessWidget {
         title: Text(element),
         trailing: Icon(Icons.arrow_back),
         onTap: () {
-          //Get.offAll(MapaMonumento(), arguments: args);
+          Get.offAll(MapaMonumento(), arguments: args);
         },
       );
       lst.add(w);

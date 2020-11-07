@@ -1,6 +1,7 @@
 import 'package:arte_y_monumentos/providers/data_providers.dart';
 import 'package:arte_y_monumentos/screens/listalocalidades_screen.dart';
 import 'package:arte_y_monumentos/screens/listamonumentosfiltrados_screen.dart';
+import 'package:arte_y_monumentos/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -18,7 +19,7 @@ class ListaTiposScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Arte y Monumentos por Tipos"),
       ),
-      //drawer: MenuWidget(),
+      drawer: MenuWidget(),
       body: _lista(context),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
