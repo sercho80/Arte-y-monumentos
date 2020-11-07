@@ -1,5 +1,7 @@
 import 'package:arte_y_monumentos/providers/data_providers.dart';
+import 'package:arte_y_monumentos/screens/listatipos_screen.dart';
 import 'package:arte_y_monumentos/screens/mapa_screen.dart';
+import 'package:arte_y_monumentos/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,15 +12,15 @@ class ListaMonumentosFiltrados extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    args = Get.arguments();
+    args = Get.arguments() ?? new Map<String, Object>();
 
     return Scaffold(
       appBar: AppBar(title: Text("Lista de arte y monumentos")),
-      //drawer: MenuWidget(),
+      drawer: MenuWidget(),
       body: _lista(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //Get.offAll(ListaTiposScreen(), arguments: args);
+          Get.offAll(ListaTiposScreen(), arguments: args);
         },
         child: Icon(Icons.arrow_back),
       ),
@@ -28,8 +30,8 @@ class ListaMonumentosFiltrados extends StatelessWidget {
   Widget _lista() {
     return FutureBuilder(
       future: dataProvider.cargarMonumentosTipo(
-          box.read('localidad') ?? args['localidad'],
-          box.read('tipo') ?? args['tipo']),
+          box.read('NombreLocalidad') ?? args['NombreLocalidad'],
+          box.read('Tipo') ?? args['Tipo']),
       initialData: [],
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {

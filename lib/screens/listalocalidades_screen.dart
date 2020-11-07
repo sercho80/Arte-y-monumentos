@@ -1,9 +1,10 @@
 import 'package:arte_y_monumentos/providers/data_providers.dart';
+import 'package:arte_y_monumentos/screens/listatipos_screen.dart';
+import 'package:arte_y_monumentos/screens/listazonas_screen.dart';
+import 'package:arte_y_monumentos/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-import 'listazonas_screen.dart';
 
 class ListaLocalidades extends StatelessWidget {
   Map<String, Object> args = new Map<String, Object>();
@@ -13,12 +14,10 @@ class ListaLocalidades extends StatelessWidget {
   Widget build(BuildContext context) {
     box.write('NombreLocalidad', null);
     box.write('Tipo', null);
-
     args = Get.arguments ?? new Map<String, Object>();
-
     return Scaffold(
       appBar: AppBar(title: Text("Arte y Monumentos por localidad")),
-      //drawer: MenuWidget(),
+      drawer: MenuWidget(),
       body: _lista(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -55,7 +54,7 @@ class ListaLocalidades extends StatelessWidget {
         onTap: () {
           box.write('NombreLocalidad', element);
           args['NombreLocalidad'] = element;
-          //Get.offAll(ListaTiposScreen(), arguments: args);
+          Get.offAll(ListaTiposScreen(), arguments: args);
         },
       );
       lst.add(w);
