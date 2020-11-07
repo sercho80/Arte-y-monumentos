@@ -53,10 +53,16 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+<<<<<<< HEAD
 assets:
   # Falla al cargar
   - assets/data/arte_y_monumentos.json
   - assets/images/
+=======
+  assets:
+    - assets/data/arte_y_monumentos.json
+    - assets/images/
+>>>>>>> b98639788453075067877b3fc8c72d7434f07b10
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
