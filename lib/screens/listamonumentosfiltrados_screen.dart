@@ -5,6 +5,7 @@ import 'package:arte_y_monumentos/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:arte_y_monumentos/models/monumento_model.dart';
 
 class ListaMonumentosFiltrados extends StatelessWidget {
   Map<String, Object> args = new Map<String, Object>();
@@ -12,8 +13,6 @@ class ListaMonumentosFiltrados extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    args = Get.arguments() ?? new Map<String, Object>();
-
     return Scaffold(
       appBar: AppBar(title: Text("Lista de arte y monumentos")),
       drawer: MenuWidget(),
@@ -33,10 +32,10 @@ class ListaMonumentosFiltrados extends StatelessWidget {
           box.read('NombreLocalidad') ?? args['NombreLocalidad'],
           box.read('Tipo') ?? args['Tipo']),
       initialData: [],
-      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+      builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return ListView(
-            children: _listaElementos(context, snapshot.data),
+            children: _listaElementos(snapshot.data),
           );
         } else {
           return Center(child: CircularProgressIndicator());
@@ -45,11 +44,12 @@ class ListaMonumentosFiltrados extends StatelessWidget {
     );
   }
 
-  List<Widget> _listaElementos(BuildContext context, List data) {
+  List<Widget> _listaElementos(List<Monumento> data) {
     final List<Widget> lst = [];
     data.forEach((element) {
       final w = ListTile(
-        title: Text(element),
+        title: Text(element.nombre),
+        subtitle: Text("Estilo: " + element.estilo),
         trailing: Icon(Icons.arrow_back),
         onTap: () {
           Get.offAll(MapaMonumento(), arguments: args);
