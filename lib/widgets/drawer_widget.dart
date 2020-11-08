@@ -27,7 +27,10 @@ class MenuWidget extends StatelessWidget {
         ),
         Divider(),
         ListTile(
-          leading: Icon(Icons.visibility, color: Colors.green),
+          leading: Icon(
+            Icons.visibility,
+            color: Colors.deepPurple[300],
+          ),
           title: Text('Zona Monumentos'),
           onTap: () {
             Get.offAll(ListZonasScreen());
@@ -35,7 +38,10 @@ class MenuWidget extends StatelessWidget {
         ),
         Divider(),
         ListTile(
-          leading: Icon(Icons.location_city, color: Colors.green),
+          leading: Icon(
+            Icons.location_city,
+            color: Colors.deepPurple[300],
+          ),
           title: Text('Localidades Monumentos'),
           onTap: () {
             if (zona != null) {
@@ -45,7 +51,10 @@ class MenuWidget extends StatelessWidget {
         ),
         Divider(),
         ListTile(
-          leading: Icon(Icons.view_list, color: Colors.green),
+          leading: Icon(
+            Icons.view_list,
+            color: Colors.deepPurple[300],
+          ),
           title: Text('Tipos Monumentos'),
           onTap: () {
             if (localidad != null) {
@@ -55,8 +64,11 @@ class MenuWidget extends StatelessWidget {
         ),
         Divider(),
         ListTile(
-          leading: Icon(Icons.amp_stories, color: Colors.green),
-          title: Text('Monumento Seleccionado'),
+          leading: Icon(
+            Icons.amp_stories,
+            color: Colors.deepPurple[300],
+          ),
+          title: Text('Monumentos'),
           onTap: () {
             if ((localidad != null) && (tipo != null)) {
               Get.offAll(ListaMonumentosFiltrados());

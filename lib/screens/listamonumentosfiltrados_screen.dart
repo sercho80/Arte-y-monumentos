@@ -14,7 +14,10 @@ class ListaMonumentosFiltrados extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Lista de arte y monumentos")),
+      appBar: AppBar(
+        title: Text("Lista de arte y monumentos"),
+        backgroundColor: Colors.deepPurple[300],
+      ),
       drawer: MenuWidget(),
       body: _lista(),
       floatingActionButton: FloatingActionButton(
@@ -22,6 +25,7 @@ class ListaMonumentosFiltrados extends StatelessWidget {
           Get.offAll(ListaTiposScreen(), arguments: args);
         },
         child: Icon(Icons.arrow_back),
+        backgroundColor: Colors.deepPurple[300],
       ),
     );
   }
@@ -50,9 +54,16 @@ class ListaMonumentosFiltrados extends StatelessWidget {
       final w = ListTile(
         title: Text(element.nombre),
         subtitle: Text("Estilo: " + element.estilo),
-        trailing: Icon(Icons.arrow_back),
+        trailing: Icon(
+          Icons.location_city,
+          color: Color(0xFFCE93D8),
+        ),
         onTap: () {
-          Get.offAll(MapaMonumento(), arguments: args);
+          Get.offAll(
+              MapaMonumento(
+                mnto: element,
+              ),
+              arguments: args);
         },
       );
       lst.add(w);

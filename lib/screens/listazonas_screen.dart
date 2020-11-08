@@ -17,7 +17,8 @@ class ListZonasScreen extends StatelessWidget {
     args = Get.arguments ?? new Map<String, Object>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Arte y Monumentos por zonas'),
+        title: Text('Arte y monumentos por zonas'),
+        backgroundColor: Colors.deepPurple[300],
       ),
       drawer: MenuWidget(),
       body: _lista(),
