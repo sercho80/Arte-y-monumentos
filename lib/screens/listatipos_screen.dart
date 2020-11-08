@@ -17,7 +17,8 @@ class ListaTiposScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Arte y Monumentos por Tipos"),
+        title: Text("Arte y monumentos por tipos"),
+        backgroundColor: Colors.deepPurple[300],
       ),
       drawer: MenuWidget(),
       body: _lista(context),
@@ -26,6 +27,7 @@ class ListaTiposScreen extends StatelessWidget {
           Get.offAll(ListaLocalidades(), arguments: args);
         },
         child: Icon(Icons.arrow_back),
+        backgroundColor: Colors.deepPurple[300],
       ),
     );
   }

@@ -16,7 +16,10 @@ class ListaLocalidades extends StatelessWidget {
     box.write('Tipo', null);
     args = Get.arguments ?? new Map<String, Object>();
     return Scaffold(
-      appBar: AppBar(title: Text("Arte y Monumentos por localidad")),
+      appBar: AppBar(
+        title: Text("Arte y monumentos por localidad"),
+        backgroundColor: Colors.deepPurple[300],
+      ),
       drawer: MenuWidget(),
       body: _lista(),
       floatingActionButton: FloatingActionButton(
@@ -24,6 +27,7 @@ class ListaLocalidades extends StatelessWidget {
           Get.offAll(ListZonasScreen(), arguments: args);
         },
         child: Icon(Icons.arrow_back),
+        backgroundColor: Colors.deepPurple[300],
       ),
     );
   }
@@ -50,7 +54,7 @@ class ListaLocalidades extends StatelessWidget {
     data.forEach((element) {
       final w = ListTile(
         title: Text(element),
-        trailing: Icon(Icons.arrow_back),
+        trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
           box.write('NombreLocalidad', element);
           args['NombreLocalidad'] = element;
