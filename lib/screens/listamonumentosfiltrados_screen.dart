@@ -50,10 +50,14 @@ class ListaMonumentosFiltrados extends StatelessWidget {
 
   List<Widget> _listaElementos(List<Monumento> data) {
     final List<Widget> lst = [];
+    var aux;
     data.forEach((element) {
+      if (element.estilo != "") {
+        aux = Text("Estilo: " + element.estilo);
+      }
       final w = ListTile(
         title: Text(element.nombre),
-        subtitle: Text("Estilo: " + element.estilo),
+        subtitle: aux,
         trailing: Icon(
           Icons.location_city,
           color: Color(0xFFCE93D8),

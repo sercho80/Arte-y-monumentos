@@ -16,8 +16,10 @@ class MapaMonumento extends StatefulWidget {
 }
 
 class _MapaMonumentoInfo extends State<MapaMonumento> {
+  Map<String, Object> args = new Map<String, Object>();
   final Monumento mnto;
   final mapa = new MapController();
+  final _url = "https://www.turismo.navarra.es/imgs/rrtt/";
   var latlon;
 
   _MapaMonumentoInfo({@required this.mnto}) {
@@ -27,6 +29,10 @@ class _MapaMonumentoInfo extends State<MapaMonumento> {
       zoneNumber: 30,
       zoneLetter: "N",
     );
+  }
+
+  _geturl() {
+    return _url + mnto.path + mnto.imgFichero;
   }
 
   @override
@@ -39,17 +45,40 @@ class _MapaMonumentoInfo extends State<MapaMonumento> {
       drawer: MenuWidget(),
       body: Column(
         children: [
-          SizedBox(
-            height: 20,
-          ),
           _info(context),
-          SizedBox(
-            height: 20,
-          ),
           Container(
               child: _mapa(),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.47),
+          Divider(),
+          Center(
+            child: Image.network(
+              _geturl(),
+              fit: BoxFit.cover,
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes
+                        : null,
+                  ),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 325.0),
+            child: FloatingActionButton(
+              onPressed: () {
+                Get.offAll(ListaMonumentosFiltrados(), arguments: args);
+              },
+              child: Icon(Icons.arrow_back),
+              backgroundColor: Colors.deepPurple[300],
+            ),
+          ),
         ],
       ),
     );
@@ -57,24 +86,14 @@ class _MapaMonumentoInfo extends State<MapaMonumento> {
 
   Widget _info(context) {
     return Container(
-        padding: EdgeInsets.only(left: 16.0, right: 16.0),
+        padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.29729,
+        height: MediaQuery.of(context).size.height * 0.075,
         child: ListView(
           children: [
             Text(
               mnto.nombre,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            //Quitar y poner abajo
-
-            Divider(),
-            FloatingActionButton(
-              onPressed: () {
-                Get.offAll(ListaMonumentosFiltrados());
-              },
-              child: Icon(Icons.arrow_back),
-              backgroundColor: Colors.deepPurple[300],
             ),
           ],
         ));
@@ -85,7 +104,7 @@ class _MapaMonumentoInfo extends State<MapaMonumento> {
       mapController: mapa,
       options: new MapOptions(
         center: new LatLng(latlon.lat, latlon.lon),
-        zoom: 15.0,
+        zoom: 18.0,
       ),
       layers: [
         TileLayerOptions(
@@ -107,7 +126,7 @@ class _MapaMonumentoInfo extends State<MapaMonumento> {
                 child: Icon(
                   Icons.location_pin,
                   color: Colors.purple[200],
-                  size: 40,
+                  size: 50,
                 ),
               ),
             ),

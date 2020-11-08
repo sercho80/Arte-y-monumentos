@@ -58,7 +58,7 @@ flutter:
   assets:
     # Solucionado el error al cargar los assets, estaban al mismo nivel que flutter:
     - assets/data/arte_y_monumentos.json
-    - assets/images/
+    - assets/images/escudo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
