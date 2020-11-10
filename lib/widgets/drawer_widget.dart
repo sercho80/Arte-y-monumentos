@@ -20,9 +20,8 @@ class MenuWidget extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage('assets/images/escudo.png'),
-              fit: BoxFit.cover,
-            )),
+                    image: AssetImage('assets/images/escudo.png'),
+                    fit: BoxFit.fitHeight)),
           ),
         ),
         Divider(),

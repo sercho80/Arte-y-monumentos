@@ -36,9 +36,9 @@ class ListZonasScreen extends StatelessWidget {
             );
           } else {
             return Center(
-              child: ListView(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(20.0),
+              child: Stack(
+                //shrinkWrap: true,
+                // padding: const EdgeInsets.all(20.0),
                 children: [
                   Center(
                       child: Image(
