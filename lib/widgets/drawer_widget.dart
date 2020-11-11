@@ -24,7 +24,6 @@ class MenuWidget extends StatelessWidget {
                     fit: BoxFit.fitHeight)),
           ),
         ),
-        Divider(),
         ListTile(
           leading: Icon(
             Icons.visibility,
